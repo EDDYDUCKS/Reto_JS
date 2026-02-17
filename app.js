@@ -112,8 +112,7 @@ document.getElementById('buscador').addEventListener('input', (evento) => {
     const datosFiltrados = datosHorario.filter(clase => 
         clase.asignatura.toLowerCase().includes(texto) || 
         clase.codigo.includes(texto) ||                   
-        clase.aula.toLowerCase().includes(texto)
-        clase.dia.toLowerCase().includes(texto)          
+        clase.aula.toLowerCase().includes(texto)         
     );
 
     renderizarLista(datosFiltrados);
