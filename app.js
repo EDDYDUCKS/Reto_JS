@@ -46,3 +46,37 @@ function renderizarLista() {
     html += `</tbody></table></div></div></div>`;
     document.getElementById('contenedor-lista').innerHTML = html;
 }
+function renderizarCalendario() {
+    let html = `
+    <div class="card shadow-sm border-0">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center align-middle m-0">
+                <thead class="table-dark">
+                    <tr><th>HORA / DÍA</th>`;
+    
+    diasSemana.forEach(dia => html += `<th>${dia}</th>`);
+    html += `</tr></thead><tbody>`;
+
+    bloquesHorarios.forEach(hora => {
+        html += `<tr><td class="fw-bold bg-light">${hora}</td>`;
+        
+        diasSemana.forEach(dia => {
+            const clase = datosHorario.find(c => c.dia === dia && c.horario === hora);
+            
+            if (clase) {
+                html += `
+                    <td class="${clase.color} p-2 border border-secondary">
+                        <div class="fw-bold small">${clase.asignatura}</div>
+                        <span class="badge text-bg-dark mt-1">${clase.grupo}</span>
+                        <span class="badge text-bg-light text-dark mt-1">${clase.aula}</span>
+                    </td>`;
+            } else {
+                html += `<td></td>`;
+            }
+        });
+        html += `</tr>`;
+    });
+
+    html += `</tbody></table></div></div>`;
+    document.getElementById('contenedor-calendario').innerHTML = html;
+}
