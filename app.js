@@ -1,10 +1,18 @@
 const datosHorario = [
     { codigo: '0413', asignatura: 'PROGRAMACION WEB', grupo: 'Gpo1', dia: 'MARTES', horario: '10:00 - 11:40', aula: 'E201', color: 'table-primary' },
     { codigo: '0413', asignatura: 'PROGRAMACION WEB', grupo: 'Gpo1', dia: 'JUEVES', horario: '15:00 - 16:40', aula: 'E201', color: 'table-primary' },
+    
     { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo3', dia: 'LUNES', horario: '08:00 - 09:40', aula: 'D104', color: 'table-success' },
     { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo3', dia: 'MIERCOLES', horario: '08:00 - 09:40', aula: 'D104', color: 'table-success' },
+    
     { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo4', dia: 'LUNES', horario: '10:00 - 11:40', aula: 'E201', color: 'table-success' },
-    { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo4', dia: 'JUEVES', horario: '08:00 - 09:40', aula: 'E201', color: 'table-success' }
+    { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo4', dia: 'JUEVES', horario: '08:00 - 09:40', aula: 'E201', color: 'table-success' },
+
+    { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo7', dia: 'LUNES', horario: '15:00 - 16:40', aula: 'D104', color: 'table-success' },
+    { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo7', dia: 'JUEVES', horario: '13:00 - 14:40', aula: 'D104', color: 'table-success' },
+    
+    { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo8', dia: 'MARTES', horario: '15:00 - 16:40', aula: 'D104', color: 'table-success' },
+    { codigo: '0402', asignatura: 'INTRO. INGENIERIA', grupo: 'Gpo8', dia: 'MIERCOLES', horario: '13:00 - 14:40', aula: 'D104', color: 'table-success' }
 ];
 
 const diasSemana = ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES'];
@@ -115,6 +123,6 @@ document.getElementById('buscador').addEventListener('input', (evento) => {
         clase.aula.toLowerCase().includes(texto) ||       
         clase.dia.toLowerCase().includes(texto)           
     );
-    
+
     renderizarLista(datosFiltrados);
 });
