@@ -80,3 +80,22 @@ function renderizarCalendario() {
     html += `</tbody></table></div></div>`;
     document.getElementById('contenedor-calendario').innerHTML = html;
 }
+
+document.getElementById('btn-lista').addEventListener('click', () => {
+    document.getElementById('contenedor-lista').classList.replace('d-none', 'd-block');
+    document.getElementById('contenedor-calendario').classList.replace('d-block', 'd-none');
+    document.getElementById('btn-lista').classList.replace('btn-outline-primary', 'btn-primary');
+    document.getElementById('btn-calendario').classList.replace('btn-primary', 'btn-outline-primary');
+});
+
+document.getElementById('btn-calendario').addEventListener('click', () => {
+    document.getElementById('contenedor-calendario').classList.replace('d-none', 'd-block');
+    document.getElementById('contenedor-lista').classList.replace('d-block', 'd-none');
+    document.getElementById('btn-calendario').classList.replace('btn-outline-primary', 'btn-primary');
+    document.getElementById('btn-lista').classList.replace('btn-primary', 'btn-outline-primary');
+});
+
+window.onload = () => {
+    renderizarLista();
+    renderizarCalendario();
+};
