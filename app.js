@@ -18,3 +18,31 @@ datosHorario.sort((a, b) => {
     }
     return a.horario.localeCompare(b.horario);
 });
+
+function renderizarLista() {
+    let html = `
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle m-0">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>CÓDIGO</th><th class="text-start">ASIGNATURA</th><th>GRUPO</th><th>DÍA</th><th>HORARIO</th><th>AULA</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">`;
+    datosHorario.forEach(clase => {
+        html += `
+            <tr class="${clase.color}">
+                <td>${clase.codigo}</td>
+                <td class="text-start fw-bold">${clase.asignatura}</td>
+                <td><span class="badge text-bg-${clase.color === 'table-primary' ? 'primary' : 'success'}">${clase.grupo}</span></td>
+                <td>${clase.dia}</td>
+                <td>${clase.horario}</td>
+                <td><span class="badge text-bg-dark">${clase.aula}</span></td>
+            </tr>`;
+    });
+
+    html += `</tbody></table></div></div></div>`;
+    document.getElementById('contenedor-lista').innerHTML = html;
+}
