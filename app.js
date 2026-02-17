@@ -19,7 +19,7 @@ datosHorario.sort((a, b) => {
     return a.horario.localeCompare(b.horario);
 });
 
-function renderizarLista() {
+function renderizarLista(datosParaMostrar = datosHorario) {
     let html = `
     <div class="card shadow-sm border-0">
         <div class="card-body p-0">
@@ -31,17 +31,23 @@ function renderizarLista() {
                         </tr>
                     </thead>
                     <tbody class="text-center">`;
-    datosHorario.forEach(clase => {
-        html += `
-            <tr class="${clase.color}">
-                <td>${clase.codigo}</td>
-                <td class="text-start fw-bold">${clase.asignatura}</td>
-                <td><span class="badge text-bg-${clase.color === 'table-primary' ? 'primary' : 'success'}">${clase.grupo}</span></td>
-                <td>${clase.dia}</td>
-                <td>${clase.horario}</td>
-                <td><span class="badge text-bg-dark">${clase.aula}</span></td>
-            </tr>`;
-    });
+    
+    if (datosParaMostrar.length === 0) {
+        html += `<tr><td colspan="6" class="text-muted py-4">No se encontraron resultados</td></tr>`;
+    } else {
+
+        datosParaMostrar.forEach(clase => {
+            html += `
+                <tr class="${clase.color}">
+                    <td>${clase.codigo}</td>
+                    <td class="text-start fw-bold">${clase.asignatura}</td>
+                    <td><span class="badge text-bg-${clase.color === 'table-primary' ? 'primary' : 'success'}">${clase.grupo}</span></td>
+                    <td>${clase.dia}</td>
+                    <td>${clase.horario}</td>
+                    <td><span class="badge text-bg-dark">${clase.aula}</span></td>
+                </tr>`;
+        });
+    }
 
     html += `</tbody></table></div></div></div>`;
     document.getElementById('contenedor-lista').innerHTML = html;
@@ -99,3 +105,15 @@ window.onload = () => {
     renderizarLista();
     renderizarCalendario();
 };
+
+document.getElementById('buscador').addEventListener('input', (evento) => {
+    const texto = evento.target.value.toLowerCase();
+    
+    const datosFiltrados = datosHorario.filter(clase => 
+        clase.asignatura.toLowerCase().includes(texto) || 
+        clase.codigo.includes(texto) ||                   
+        clase.aula.toLowerCase().includes(texto)          
+    );
+
+    renderizarLista(datosFiltrados);
+});
