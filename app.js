@@ -9,3 +9,12 @@ const datosHorario = [
 
 const diasSemana = ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES'];
 const bloquesHorarios = ['08:00 - 09:40', '10:00 - 11:40', '13:00 - 14:40', '15:00 - 16:40'];
+
+const pesosDias = { 'LUNES': 1, 'MARTES': 2, 'MIERCOLES': 3, 'JUEVES': 4, 'VIERNES': 5 };
+
+datosHorario.sort((a, b) => {
+    if (pesosDias[a.dia] !== pesosDias[b.dia]) {
+        return pesosDias[a.dia] - pesosDias[b.dia]; 
+    }
+    return a.horario.localeCompare(b.horario);
+});
